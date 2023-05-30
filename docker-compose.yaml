@@ -1,0 +1,35 @@
+version: '1.0'
+
+services:
+  usm-api:
+    image: usm-api
+    build:
+      dockerfile: ./Dockerfile
+    container_name: usm-api
+    ports:
+      - "8111:8110"
+    environment:
+      - MONGO_HOST
+      - MONGO_PORT
+      - MONGO_DB
+      - MONGO_USER_FILES_BUCKET
+      - MONGO_POST_FILES_BUCKET
+    depends_on:
+      - mongo
+    volumes:
+      - "${PWD}:/app"
+
+  mongo:
+    image: mongo:5.0.17
+    container_name: mongo-usm
+    ports:
+      - "27027:27017"
+
+  usm-test:
+    image: usm-test
+    build:
+      dockerfile: ./Dockerfile-test
+    container_name: usm-test
+    environment:
+      - MONGO_HOST
+      - MONGO_PORT
