@@ -19,18 +19,20 @@ services:
     volumes:
       - ".:/app"
 
+  usm-test:
+    image: usm-test
+    container_name: usm-test
+    build:
+      context: "."
+      dockerfile: Dockerfile-test
+    depends_on:
+      - mongo
+    environment:
+      - MONGO_HOST
+      - MONGO_PORT
+
   mongo:
     image: mongo:5.0.17
     container_name: mongo-usm
     ports:
       - "27017:27017"
-
-  usm-test:
-    image: usm-test
-    build:
-      context: "."
-      dockerfile: Dockerfile-test
-    container_name: usm-test
-    environment:
-      - MONGO_HOST
-      - MONGO_PORT
