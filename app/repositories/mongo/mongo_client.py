@@ -18,9 +18,7 @@ class MongoClient:
         client: motor_asyncio.AsyncIOMotorClient | None = None,
     ):
         if client is None:
-            # connection_string: str = f'mongodb://{MONGO_HOST}:{MONGO_PORT}'
             try:
-                # self._client = motor_asyncio.AsyncIOMotorClient(connection_string)
                 self._client = motor_asyncio.AsyncIOMotorClient(MONGO_HOST, MONGO_PORT)
             except ServerSelectionTimeoutError:
                 raise MongoRepositoryException()

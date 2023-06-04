@@ -1,12 +1,16 @@
 import asyncio
 import logging
+import logging.config
 
 import nest_asyncio
 
 from app.constants import COUNTRY_LIST
 from app.models.country import Country
 from app.repositories.mongo.country_repo import CountryRepositoryMongo
+from app.settings import LOGGING
 
+
+logging.config.dictConfig(LOGGING)
 nest_asyncio.apply()
 
 
@@ -19,7 +23,7 @@ async def create_start_data_async():
             await repo.create_update(country)
             logging.info(f'    {country} created.')
     else:
-        logging.info('Country list already in database.')
+        logging.info('Country list is already in database.')
 
 
 def create_data():
