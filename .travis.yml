@@ -1,11 +1,11 @@
-# language: python
+language: python
 # python:
 #     - "3.11.0"
 # dist: xenial
 
 services:
     - docker-compose
-    - mongo
+    # - mongo
 
 before_install:
     # - docker pull mongo:5.0.17

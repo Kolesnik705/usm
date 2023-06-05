@@ -34,5 +34,3 @@ services:
   mongo:
     image: mongo:5.0.17
     container_name: mongo-usm
-    # ports:
-    #   - "27017:27017"
