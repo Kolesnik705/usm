@@ -4,9 +4,9 @@ services:
     - docker
 
 before_install:
-    - docker pull mongo:5.0.17
+    # - docker pull mongo:5.0.17
     - docker build -f Dockerfile-test -t usm-test .
 
 script:
-    - docker run mongo:5.0.17
+    - docker run -p 27017:27017 mongo:5.0.17
     - docker run usm-test
