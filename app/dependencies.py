@@ -154,4 +154,3 @@ async def authenticate(
 
     if user is None:
         raise credentials_exception
-
