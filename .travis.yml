@@ -4,13 +4,15 @@
 # dist: xenial
 
 services:
-    - docker
+    - docker-compose
     - mongo
 
 before_install:
-    - docker pull mongo:5.0.17
-    - docker build -f Dockerfile-test -t usm-test .
+    # - docker pull mongo:5.0.17
+    # - docker build -f Dockerfile-test -t usm-test .
+    - docker-compose build usm-test
 
 script:
     # - docker run -p 27017:27017 mongo:5.0.17
-    - docker run --network host -e CI=true usm-test
+    # - docker run --network host -e CI=true usm-test
+    - docker-compose up usm-test
