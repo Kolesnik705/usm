@@ -1,6 +1,6 @@
 language: python
-# python:
-#     - "3.11.0"
+python:
+    - "nightly"
 # dist: xenial
 
 services:
