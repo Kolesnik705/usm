@@ -1,7 +1,7 @@
-language: python
-python:
-    - "3.11.0"
-dist: xenial
+# language: python
+# python:
+#     - "3.11.0"
+# dist: xenial
 
 services:
     - docker
