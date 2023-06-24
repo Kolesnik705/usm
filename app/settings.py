@@ -15,6 +15,12 @@ MONGO_DB = os.getenv('MONGO_DB', 'usm')
 MONGO_USER_FILES_BUCKET = os.getenv('MONGO_USER_FILES_BUCKET', 'user_files')
 MONGO_POST_FILES_BUCKET = os.getenv('MONGO_POST_FILES_BUCKET', 'post_files')
 
+
+# ----- Redis -----
+REDIS_HOST = os.getenv('REDIS_HOST', 'redis-usm')
+REDIS_PORT = os.getenv('REDIS_PORT', 6379)
+REDIS_DB = os.getenv('REDIS_DB', 0)
+
 # ----- Logging -----
 LOG_LEVEL = os.getenv('LOG_LEVEL', 'INFO')
 LOGGING = dict(

@@ -1,36 +1,71 @@
 version: '3.0'
 
 services:
-  usm-api:
-    image: usm-api
-    build:
-      context: "."
-    container_name: usm-api
-    ports:
-      - "8110:8110"
-    environment:
-      - MONGO_HOST
-      - MONGO_PORT
-      - MONGO_DB
-      - MONGO_USER_FILES_BUCKET
-      - MONGO_POST_FILES_BUCKET
-    depends_on:
-      - mongo
-    volumes:
-      - ".:/app"
+    usm-api:
+        image: usm-api
+        build:
+            context: "."
+        container_name: usm-api
+        ports:
+            - "8110:8110"
+        environment:
+            - MONGO_HOST
+            - MONGO_PORT
+            - MONGO_DB
+            - MONGO_USER_FILES_BUCKET
+            - MONGO_POST_FILES_BUCKET
+            - REDIS_HOST
+            - REDIS_PORT
+            - REDIS_DB
+        depends_on:
+            - mongo
+            - usm-worker
+        volumes:
+            - ".:/app"
+        networks:
+            - usm-net
 
-  usm-test:
-    image: usm-test
-    container_name: usm-test
-    build:
-      context: "."
-      dockerfile: Dockerfile-test
-    depends_on:
-      - mongo
-    environment:
-      - MONGO_HOST
-      - MONGO_PORT
+    usm-test:
+        image: usm-test
+        container_name: usm-test
+        build:
+            context: "."
+            dockerfile: Dockerfile-test
+        depends_on:
+            - mongo
+            - usm-worker
+        environment:
+            - MONGO_HOST
+            - MONGO_PORT
+            - REDIS_HOST
+            - REDIS_PORT
+        networks:
+            - usm-net
 
-  mongo:
-    image: mongo:5.0.17
-    container_name: mongo-usm
+    mongo:
+        image: mongo:5.0.17
+        container_name: mongo-usm
+        ports:
+            - "27017:27017"
+        networks:
+            - usm-net
+
+    redis:
+        image: redis
+        container_name: redis-usm
+        ports:
+            - "6379:6379"
+        networks:
+            - usm-net
+    usm-worker:
+        image: usm-worker
+        build:
+            context: "."
+            dockerfile: Dockerfile-worker
+        container_name: usm-worker
+        depends_on:
+            - redis
+        networks:
+            - usm-net
+networks:
+    usm-net:
