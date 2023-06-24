@@ -40,6 +40,8 @@ async def create_post(
         return await repo.get_by_id(post.id)
     except MongoRepositoryException as e:
         return ResponseGenerator.db_connection_error_response(str(e))
+    except Exception as e:
+        return ResponseGenerator.db_connection_error_response(str(e))
 
 
 @router.get(
@@ -96,7 +98,7 @@ async def update_post(
             else post.url,
             created_at=post.created_at,
         )
-        await repo.create_update(update_post)
+        await repo.create_update(update_post, False)
         return await repo.get_by_id(data.id)
     except MongoRepositoryException as e:
         return ResponseGenerator.db_connection_error_response(str(e))

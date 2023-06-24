@@ -111,7 +111,7 @@ async def verify_post_content(
     async with aiohttp.ClientSession() as session:
         try:
             async with session.get(url) as response:
-                if response.status_code != status.HTTP_200_OK:
+                if response.status != status.HTTP_200_OK:
                     error = True
                     detail = 'Wrong url. There is no content.'
         except aiohttp.client_exceptions.ClientConnectionError:
