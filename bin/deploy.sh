@@ -1,4 +1,3 @@
-#!/bin/sh
 
 docker build -t kolesnik705/usm-api:latest -t kolesnik705/usm-api:"${GIT_SHA}" -f Dockerfile .
 docker build -t kolesnik705/usm-worker:latest -t kolesnik705/usm-worker:"${GIT_SHA}" -f Dockerfile-worker .
