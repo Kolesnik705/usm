@@ -25,4 +25,4 @@ before_install:
 #   provider: script
 #   script: bash ./bin/deploy.sh
 #   on:
-#     branch: master
+#     branch: main
