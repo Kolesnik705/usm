@@ -21,8 +21,8 @@ spec:
             - name: REDIS_HOST
               value: redis-cluster-ip-service
             - name: REDIS_PORT
-              # value: 6379
+              value: 6379
             - name: MONGO_HOST
               value: mongo-cluster-ip-service
             - name: MONGO_PORT
-              # value: 21017
+              value: 21017
