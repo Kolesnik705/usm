@@ -25,4 +25,4 @@ spec:
             - name: MONGO_HOST
               value: mongo-cluster-ip-service
             - name: MONGO_PORT
-              value: '21017'
+              value: '27017'
