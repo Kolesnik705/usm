@@ -15,7 +15,7 @@ before_install:
   - gcloud config set project usm-project-396219
   - gcloud config set compute/zone europe-west1
   - gcloud container clusters get-credentials usm-cluster
-  - echo kolesnik7 | docker login Kolesnik705 --password-stdin
+  - echo "${DOCKER_PASSWORD}" | docker login -u "${DOCKER_USERNAME}" --password-stdin
   - docker build -t kolesnik705/usm-test -f Dockerfile-test .
 
 script:
