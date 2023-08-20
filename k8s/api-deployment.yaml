@@ -13,7 +13,7 @@ spec:
         component: api
     spec:
       containers:
-        - name: usm-api
+        - name: api
           image: kolesnik705/usm:latest
           ports:
             - containerPort: 8110
