@@ -10,7 +10,7 @@ before_install:
   # - openssl aes-256-cbc -K $encrypted_9f3b5599b056_key -in ./service-account.json.enc -out service-account.json -d
   - curl https://sdk.cloud.google.com | bash > /dev/null;
   - source $HOME/google-cloud-sdk/path.bash.inc
-  - gclod components update kubectl
+  - gcloud components update kubectl
   - gcloud auth activate-service-account --key-file service-account.json
   - gcloud config set project usm-project-396219
   - gcloud config set compute/zone europe-west1
