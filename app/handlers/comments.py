@@ -10,8 +10,12 @@ from app.dto.responses import (DetailResponse, ResponseGenerator,
 from app.models.comment import Comment
 from app.repositories.mongo.mongo_client import MongoRepositoryException
 
+# router = APIRouter(
+#     prefix='/v1/comments', tags=['comments'], dependencies=[Depends(authenticate)]
+# )
+
 router = APIRouter(
-    prefix='/v1/comments', tags=['comments'], dependencies=[Depends(authenticate)]
+    prefix='/v1/comments', tags=['comments']
 )
 
 

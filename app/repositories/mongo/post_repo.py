@@ -52,8 +52,7 @@ class PostRepositoryMongo(MongoClient, PostRepository):
                         upsert=True,
                     )
                     if new:
-                        # await self._strip_repo.create_records(post)
-                        await enqueue_post(post)
+                        await enqueue_post(post.id)
 
         except ServerSelectionTimeoutError as e:
             raise MongoRepositoryException(str(e))

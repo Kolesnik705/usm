@@ -15,4 +15,4 @@ cryptography==40.0.2
 passlib==1.7.4
 bcrypt==4.0.1
 redis==4.5.5
-rq==1.15.0
+elasticsearch==8.8.2

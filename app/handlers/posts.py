@@ -11,7 +11,8 @@ from app.models.post import Post
 from app.repositories.mongo.mongo_client import MongoRepositoryException
 
 router = APIRouter(
-    prefix='/v1/posts', tags=['posts'], dependencies=[Depends(authenticate)]
+    # prefix='/v1/posts', tags=['posts'], dependencies=[Depends(authenticate)]
+    prefix='/v1/posts', tags=['posts']
 )
 
 

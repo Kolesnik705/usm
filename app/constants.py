@@ -24,6 +24,13 @@ REDIS_TASK_NAME = 'post_queue'
 
 
 # ---------------------
+# --- Elasticsearch ---
+# ---------------------
+ELASTIC_INDEX_LOG = 'usm-logs'
+ELASTIC_INDEX_POST = 'usm-posts'
+
+
+# ---------------------
 # ----- Countries -----
 # ---------------------
 
