@@ -7,13 +7,26 @@ SECRET_KEY = os.getenv(
 ACCESS_TOKEN_EXPIRE_MINUTES = os.getenv('ACCESS_TOKEN_EXPIRE_MINUTES', 30)
 ALGORITHM = "HS256"
 
+
 # ----- Mongo -----
-MONGO_HOST = os.getenv('MONGO_HOST', 'mongo-usm')
+MONGO_HOST = os.getenv('MONGO_HOST', 'usm-mongo')
 MONGO_PORT = os.getenv('MONGO_PORT', 27017)
 MONGO_DB = os.getenv('MONGO_DB', 'usm')
 
 MONGO_USER_FILES_BUCKET = os.getenv('MONGO_USER_FILES_BUCKET', 'user_files')
 MONGO_POST_FILES_BUCKET = os.getenv('MONGO_POST_FILES_BUCKET', 'post_files')
+
+
+# ----- Redis -----
+REDIS_HOST = os.getenv('REDIS_HOST', 'usm-redis')
+REDIS_PORT = os.getenv('REDIS_PORT', 6379)
+REDIS_DB = os.getenv('REDIS_DB', 0)
+
+
+# ----- Elasticsearch -----
+ELASTICSEARCH_HOST = os.getenv('ELASTICSEARCH_HOST', 'usm-elastic')
+ELASTICSEARCH_PORT = os.getenv('ELASTICSEARCH_PORT', 9200)
+
 
 # ----- Logging -----
 LOG_LEVEL = os.getenv('LOG_LEVEL', 'INFO')

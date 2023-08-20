@@ -23,7 +23,7 @@ async def create_start_data_async():
             await repo.create_update(country)
             logging.info(f'    {country} created.')
     else:
-        logging.info('Country list is already in database.')
+        logging.info('MONGODB: Country list is already in database.')
 
 
 def create_data():

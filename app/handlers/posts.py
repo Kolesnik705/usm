@@ -11,7 +11,8 @@ from app.models.post import Post
 from app.repositories.mongo.mongo_client import MongoRepositoryException
 
 router = APIRouter(
-    prefix='/v1/posts', tags=['posts'], dependencies=[Depends(authenticate)]
+    # prefix='/v1/posts', tags=['posts'], dependencies=[Depends(authenticate)]
+    prefix='/v1/posts', tags=['posts']
 )
 
 
@@ -39,6 +40,8 @@ async def create_post(
         await repo.create_update(post)
         return await repo.get_by_id(post.id)
     except MongoRepositoryException as e:
+        return ResponseGenerator.db_connection_error_response(str(e))
+    except Exception as e:
         return ResponseGenerator.db_connection_error_response(str(e))
 
 
@@ -96,7 +99,7 @@ async def update_post(
             else post.url,
             created_at=post.created_at,
         )
-        await repo.create_update(update_post)
+        await repo.create_update(update_post, False)
         return await repo.get_by_id(data.id)
     except MongoRepositoryException as e:
         return ResponseGenerator.db_connection_error_response(str(e))

@@ -51,7 +51,7 @@ async def create_user(
     '/{id}',
     status_code=status.HTTP_200_OK,
     response_model=Union[DetailResponse, UserOut],
-    dependencies=[Depends(authenticate)],
+    # dependencies=[Depends(authenticate)],
 )
 async def get_user(id: str = Path(), repo=Depends(user_repository_dependency)):
     try:
@@ -68,7 +68,7 @@ async def get_user(id: str = Path(), repo=Depends(user_repository_dependency)):
     '/',
     status_code=status.HTTP_200_OK,
     response_model=Union[UserOut, ValidationErrorResponse, None],
-    dependencies=[Depends(authenticate)],
+    # dependencies=[Depends(authenticate)],
 )
 async def get_user_by_param(
     email: str | None = None,
@@ -100,7 +100,7 @@ async def get_user_by_param(
     '/{id}',
     status_code=status.HTTP_200_OK,
     response_model=Union[UserOut, ValidationErrorResponse, DetailResponse],
-    dependencies=[Depends(authenticate)],
+    # dependencies=[Depends(authenticate)],
 )
 async def update_user(
     data: UserIn = Depends(UserIn.form_update_user),
@@ -139,7 +139,7 @@ async def update_user(
 @router.delete(
     '/{id}',
     status_code=status.HTTP_202_ACCEPTED,
-    dependencies=[Depends(authenticate)],
+    # dependencies=[Depends(authenticate)],
 )
 async def delete_user(id: str = Path(), repo=Depends(user_repository_dependency)):
     try:
@@ -157,7 +157,7 @@ async def delete_user(id: str = Path(), repo=Depends(user_repository_dependency)
     '/search/slug',
     status_code=status.HTTP_200_OK,
     response_model=Union[UserOutList | DetailResponse],
-    dependencies=[Depends(authenticate)],
+    # dependencies=[Depends(authenticate)],
 )
 async def search_user(
     search: str = Query(..., min_length=3),

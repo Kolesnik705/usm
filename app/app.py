@@ -1,5 +1,6 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
 from app.handlers import comments, followers, posts, strip, token, users
+from app import midlwares
 
 import logging
 import logging.config
@@ -19,5 +20,11 @@ def create_app():
     app.include_router(posts.router)
     app.include_router(comments.router)
     app.include_router(strip.router)
+
+    # @app.middleware("http")
+    async def add_process_time_header(request: Request, call_next):
+        response = await midlwares.read_stats(request, call_next)
+
+        return response
 
     return app

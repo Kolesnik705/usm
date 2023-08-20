@@ -11,6 +11,7 @@ from app.repositories.mongo.mongo_client import (MongoClient,
 from app.repositories.mongo.service import delete_related_documents
 from app.repositories.mongo.strip_repo import StripRepositoryMongo
 from app.settings import MONGO_POST_FILES_BUCKET
+from app.controllers.redis import enqueue_post
 
 
 class PostRepositoryMongo(MongoClient, PostRepository):
@@ -23,7 +24,7 @@ class PostRepositoryMongo(MongoClient, PostRepository):
         self._strip_repo = StripRepositoryMongo(self.client)
 
     @func_logger()
-    async def create_update(self, post: Post) -> None:
+    async def create_update(self, post: Post, new=True) -> None:
         try:
             async with await self.client.start_session() as session:
                 async with session.start_transaction():
@@ -50,8 +51,9 @@ class PostRepositoryMongo(MongoClient, PostRepository):
                         },
                         upsert=True,
                     )
+                    if new:
+                        await enqueue_post(post.id)
 
-                    await self._strip_repo.create_records(post)
         except ServerSelectionTimeoutError as e:
             raise MongoRepositoryException(str(e))
 

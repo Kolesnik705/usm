@@ -10,7 +10,8 @@ from app.dto.strip import StripOutlist
 from app.repositories.mongo.mongo_client import MongoRepositoryException
 
 router = APIRouter(
-    prefix='/v1/strip', tags=['strip'], dependencies=[Depends(authenticate)]
+    # prefix='/v1/strip', tags=['strip'], dependencies=[Depends(authenticate)]
+    prefix='/v1/strip', tags=['strip'],
 )
 
 

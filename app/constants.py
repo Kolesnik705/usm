@@ -16,6 +16,20 @@ SUPPORTED_IMAGE_TYPES = ('png', 'jpg', 'jpeg')
 SUPPORTED_VIDEO_TYPES = ('mp4', 'wmv', 'mov')
 
 MONGO_DB_TEST = 'test'
+
+# ---------------------
+# ------- Redis -------
+# ---------------------
+REDIS_TASK_NAME = 'post_queue'
+
+
+# ---------------------
+# --- Elasticsearch ---
+# ---------------------
+ELASTIC_INDEX_LOG = 'usm-logs'
+ELASTIC_INDEX_POST = 'usm-posts'
+
+
 # ---------------------
 # ----- Countries -----
 # ---------------------

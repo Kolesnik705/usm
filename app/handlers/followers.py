@@ -11,8 +11,12 @@ from app.dto.responses import (DetailResponse, ResponseGenerator,
 from app.models.followers import Follower
 from app.repositories.mongo.mongo_client import MongoRepositoryException
 
+# router = APIRouter(
+#     prefix='/v1/followers', tags=['followers'], dependencies=[Depends(authenticate)]
+# )
+
 router = APIRouter(
-    prefix='/v1/followers', tags=['followers'], dependencies=[Depends(authenticate)]
+    prefix='/v1/followers', tags=['followers']
 )
 
 
