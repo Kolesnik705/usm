@@ -28,7 +28,7 @@ class RedisConnection(Redis):
 
 redis_client = RedisConnection(
     host=REDIS_HOST,
-    port=int(REDIS_PORT),
+    port=REDIS_PORT,
     db=REDIS_DB,
 )
 
