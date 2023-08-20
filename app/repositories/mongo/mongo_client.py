@@ -19,7 +19,7 @@ class MongoClient:
     ):
         if client is None:
             try:
-                self._client = motor_asyncio.AsyncIOMotorClient(MONGO_HOST, MONGO_PORT)
+                self._client = motor_asyncio.AsyncIOMotorClient(MONGO_HOST, int(MONGO_PORT))
             except ServerSelectionTimeoutError:
                 raise MongoRepositoryException()
         else:
