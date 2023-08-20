@@ -12,5 +12,7 @@ spec:
           - path: /?(.*)
             pathType: Prefix
             backend:
-              serviceName: api-cluster-ip-service
-              servicePort: 8110
+              service:
+                name: api-cluster-ip-service
+                port:
+                  number: 8110
