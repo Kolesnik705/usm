@@ -8,7 +8,8 @@ docker push kolesnik705/usm-api:"${GIT_SHA}"
 docker push kolesnik705/usm-worker:latest
 docker push kolesnik705/usm-worker:"${GIT_SHA}"
 
-kubectl apply -f k8s
+kubectl apply -f k8s --namespace ingress-nginx
 
 kubectl set image deployments/api-deployment api=kolesnik705/usm-api:"${GIT_SHA}"
 kubectl set image deployments/worker-deployment worker=kolesnik705/usm-worker:"${GIT_SHA}"
+
