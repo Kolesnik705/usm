@@ -1,42 +1,21 @@
-# appVersion: networking.k8s.io/v1
-# kind: Ingress
-# metadata:
-#   name: ingress-nginx-router
-#   annotations:
-#     kubernetes.io/ingress.class: 'nginx'
-#     nginx.ingress.kubernetes.io/use-regex: 'true'
-#     nginx.ingress.kubernetes.io/rewrite-target: /$2
-# spec:
-#   ingressClassName: nginx
-#   rules:
-#     - http:
-#         paths:
-#           - path: /?(.*)
-#             pathType: Prefix
-#             backend:
-#               service:
-#                 name: api-cluster-ip-service
-#                 port:
-#                   number: 8110
-#           - path: /api/?(.*)
-#             pathType: Prefix
-#             backend:
-#               service:
-#                 name: api-cluster-ip-service
-#                 port:
-#                   number: 8110
-
-apiVersion: networking.k8s.io/v1beta1
+appVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: ingress-myservicea
+  name: ingress-nginx-router
+  annotations:
+    kubernetes.io/ingress.class: 'nginx'
+    nginx.ingress.kubernetes.io/use-regex: 'true'
+    nginx.ingress.kubernetes.io/rewrite-target: /$1
 spec:
   ingressClassName: nginx
   rules:
-  # - host: myservicea.foo.org
     - http:
         paths:
-        - path: /
-          backend:
-            serviceName: api-cluster-ip-service
-            servicePort: 8110
+          - host: myservice.foo.org
+            path: /?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: api-cluster-ip-service
+                port:
+                  number: 8110
