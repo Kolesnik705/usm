@@ -1,38 +1,8 @@
-# apiVersion: apps/v1
-# kind: Deployment
-# metadata:
-#   name: elasticsearch-deployment
-# spec:
-#   replicas: 1
-#   selector:
-#     matchLabels:
-#       component: elasticsearch
-#   template:
-#     metadata:
-#       labels:
-#         component: elasticsearch
-#     spec:
-#       volumes:
-#         - name: elasticsearch-storage
-#           persistentVolumeClaim:
-#             claimName: data-persistent-volume-claim
-#       containers:
-#         - name: elasticsearch
-#           image: elasticsearch:8.8.0
-#           ports:
-#             - containerPort: 9200
-#             - containerPort: 9300
-#           volumeMounts:
-#             - name: elasticsearch-storage
-#               mountPath: /usr/share/elasticsearch/data
-#               subPath: elasticsearch
-
-apiVersion: elasticsearch.k8s.elastic.co/v1
-kind: Elasticsearch
+apiVersion: apps/v1
+kind: Deployment
 metadata:
   name: elasticsearch-deployment
 spec:
-  version: 8.8.0
   replicas: 1
   selector:
     matchLabels:
@@ -47,35 +17,23 @@ spec:
           persistentVolumeClaim:
             claimName: data-persistent-volume-claim
       containers:
-        - ports:
+        - name: elasticsearch
+          image: elasticsearch:8.8.0
+          ports:
             - containerPort: 9200
             - containerPort: 9300
           volumeMounts:
             - name: elasticsearch-storage
               mountPath: /usr/share/elasticsearch/data
               subPath: elasticsearch
-  nodeSets:
-    - name: master
-      count: 1
-      config:
-        node.master: true
-        node.data: false
-        node.ingest: false
-        xpack.ml.enabled: true
-        node.store.allow_mmap: false
-    - name: data
-      count: 1
-      config:
-        node.master: false
-        node.data: true
-        node.ingest: false
-        xpack.ml.enabled: true
-        node.store.allow_mmap: false
-    - name: client
-      count: 1
-      config:
-        node.master: false
-        node.data: false
-        node.ingest: true
-        xpack.ml.enabled: true
-        node.store.allow_mmap: false
+            env:
+            - name: discovery.type
+              value: 'single-node'
+            - name: ES_JAVA_OPTS
+              value: '-Xms512m -Xmx512m'
+            - name: DISABLE_INSTALL_DEMO_CONFIG
+              value: 'true'
+            - name: DISABLE_SECURITY_PLUGIN
+              value: 'true'
+            - name: xpack.security.enabled
+              value: 'false'
