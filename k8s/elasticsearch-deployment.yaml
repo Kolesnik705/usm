@@ -21,7 +21,6 @@ spec:
           image: elasticsearch:8.8.0
           ports:
             - containerPort: 9200
-            - containerPort: 9300
           volumeMounts:
             - name: elasticsearch-storage
               mountPath: /usr/share/elasticsearch/data
