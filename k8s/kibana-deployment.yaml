@@ -20,3 +20,8 @@ spec:
           env:
           - name: ELASTICSEARCH_HOSTS
             value: 'http://elasticsearch-cluster-ip-service:9200'
+          - name: SERVER_BASEPATH
+            value: '/kibana-development'
+          - name: SERVER_REWRITEBASEPATH
+            value: "false"
+
