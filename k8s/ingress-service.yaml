@@ -19,3 +19,10 @@ spec:
                 name: api-cluster-ip-service
                 port:
                   number: 8110
+          - path: /kibana/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: kibana-cluster-ip-service
+                port:
+                  number: 5601
