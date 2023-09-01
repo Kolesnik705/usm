@@ -21,7 +21,7 @@ spec:
           - name: ELASTICSEARCH_HOSTS
             value: 'http://elasticsearch-cluster-ip-service:9200'
           - name: SERVER_BASEPATH
-            value: '/kibana-cluster-ip-service'
+            value: '/api/v1/namespaces/default/services/kibana-cluster-ip-service:http/proxy'
           - name: SERVER_REWRITEBASEPATH
             value: "false"
 
