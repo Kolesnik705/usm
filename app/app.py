@@ -21,7 +21,7 @@ def create_app():
     app.include_router(comments.router)
     app.include_router(strip.router)
 
-    # @app.middleware("http")
+    @app.middleware("http")
     async def add_process_time_header(request: Request, call_next):
         response = await midlwares.read_stats(request, call_next)
 
