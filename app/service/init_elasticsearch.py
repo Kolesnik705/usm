@@ -25,7 +25,7 @@ async def create_indices():
 
         try:
             await elastic_controller.get_index_by_name(index=ELASTIC_INDEX_LOG)
-            logging.info(f'ELASTICSEARCH: {ELASTIC_INDEX_LOG} index alreaddy in elastic database')
+            logging.info(f'ELASTICSEARCH: {ELASTIC_INDEX_LOG} index is already in elastic database')
             break
         except ConnectionError:
             attempts += 1

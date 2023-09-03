@@ -1,5 +1,5 @@
 from fastapi import FastAPI, Request
-from app.handlers import comments, followers, posts, strip, token, users
+from app.handlers import comments, followers, posts, strip, token, users, health
 from app import midlwares
 
 import logging
@@ -14,6 +14,7 @@ def create_app():
     Creates fastAPI application"""
     app = FastAPI()
 
+    app.include_router(health.router)
     app.include_router(token.router)
     app.include_router(users.router)
     app.include_router(followers.router)
