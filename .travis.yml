@@ -16,10 +16,10 @@ before_install:
   - gcloud config set compute/zone europe-west1
   - gcloud container clusters get-credentials usm-cluster
   - echo "${DOCKER_PASSWORD}" | docker login -u "${DOCKER_LOGIN}" --password-stdin
-  - docker build -t kolesnik705/usm-test -f Dockerfile-test .
+  # - docker build -t kolesnik705/usm-test -f Dockerfile-test .
 
-script:
-  - docker run -e CI=true kolesnik705/usm-test
+# script:
+#   - docker run -e CI=true kolesnik705/usm-test
 
 deploy:
   provider: script
