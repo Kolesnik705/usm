@@ -25,7 +25,7 @@ services:
             - usm-worker
             - usm-elastic
         volumes:
-            - ".:/app"
+            - "${PWD}:/app"
         networks:
             - usm-net
 

@@ -68,7 +68,7 @@ async def get_user(id: str = Path(), repo=Depends(user_repository_dependency)):
     '/',
     status_code=status.HTTP_200_OK,
     response_model=Union[UserOut, ValidationErrorResponse, None],
-    # dependencies=[Depends(authenticate)],
+    dependencies=[Depends(authenticate)],
 )
 async def get_user_by_param(
     email: str | None = None,
